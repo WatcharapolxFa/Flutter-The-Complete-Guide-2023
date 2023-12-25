@@ -22,38 +22,44 @@ class _QuizState extends State<Quiz> {
 
   void chooseAnswer(String answer) {
     selectedAnswer.add(answer);
-    if(selectedAnswer.length == questions.length){
+    if (selectedAnswer.length == questions.length) {
       setState(() {
-        selectedAnswer = [];  
-         activeScreen = 'results-screen';
+        activeScreen = 'results-screen';
       });
     }
-    
   }
 
-  @override
-  Widget build(context) {
-    Widget screenWidget = StartScreen(switchScreen);
-    if (activeScreen == 'questions-screen') {
-      screenWidget =  QuestionsScreen(onSelectedAnswer: chooseAnswer);
-    }
+  void restartQuiz() {
+    setState(() {
+      selectedAnswer = [];
+      activeScreen = 'questions-screen';
+    });
 
-    if(activeScreen == 'results-screen'){
-      screenWidget =  ResultsScreen(chooseAnswer: selectedAnswer);
-    }
+    @override
+    Widget build(context) {
+      Widget screenWidget = StartScreen(switchScreen);
+      if (activeScreen == 'questions-screen') {
+        screenWidget = QuestionsScreen(onSelectedAnswer: chooseAnswer);
+      }
 
-    return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(colors: [
-              Color.fromARGB(255, 46, 6, 116),
-              Color.fromARGB(255, 124, 35, 151)
-            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+      if (activeScreen == 'results-screen') {
+        screenWidget =
+            ResultsScreen(chosenAnswer: selectedAnswer, onRestart: restartQuiz);
+      }
+
+      return MaterialApp(
+        home: Scaffold(
+          body: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(colors: [
+                Color.fromARGB(255, 46, 6, 116),
+                Color.fromARGB(255, 124, 35, 151)
+              ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+            ),
+            child: screenWidget,
           ),
-          child: screenWidget,
         ),
-      ),
-    );
+      );
+    }
   }
 }

@@ -6,9 +6,9 @@ const endAlignment = Alignment.bottomRight;
 
 class GradientContainer extends StatelessWidget {
   const GradientContainer(this.color1, this.color2, {super.key});
-  const GradientContainer.purple({super.key})
-      : color1 = Colors.purple,
-        color2 = Colors.deepPurple;
+  // const GradientContainer.purple({super.key})
+  //     : color1 = const Color.fromARGB(255, 149, 32, 170),
+  //       color2 = const Color.fromARGB(255, 113, 67, 194);
   final Color color1;
   final Color color2;
 
@@ -22,7 +22,7 @@ class GradientContainer extends StatelessWidget {
           end: endAlignment,
         ),
       ),
-      child: Center(
+      child: const Center(
         child: DiceRoller(),
       ),
     );
