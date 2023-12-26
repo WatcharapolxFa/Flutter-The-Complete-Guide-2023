@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'packege:firebase_core/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 final _firebase = FirebaseAuth.instance;
 
@@ -17,15 +17,25 @@ class _AuthScreenState extends State<AuthScreen> {
   var _isLogin = true;
   var _enteredEmail = '';
   var _enteredPassword = '';
-  void _submit() {
+  void _submit () async {
     final isValid = _form.currentState!.validate();
     if (!isValid) {
       return;
     }
     _form.currentState!.save();
     if (_isLogin) {}
-  }else{
+  else{
+    try{
+       final userCredentials =  _firebase.createUserWithEmailAndPassword(
+      email: _enteredEmail,
+      password: _enteredPassword,
+    );
 
+    }catch(error){
+      
+    }
+   
+  }
   }
 
   @override
