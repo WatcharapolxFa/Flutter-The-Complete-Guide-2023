@@ -7,12 +7,15 @@ import 'package:adv_basics/results_screen.dart';
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
   @override
-  State<Quiz> createState() => _QuizState();
+  State<Quiz> createState() {
+    return _QuizState();
+  }
 }
 
 class _QuizState extends State<Quiz> {
   List<String> selectedAnswer = [];
-  var activeScreen = ' startScreen';
+  var activeScreen = ' start-screen';
+  // Widget activeScreen = const StartScreen();
 
   void switchScreen() {
     setState(() {
@@ -52,8 +55,8 @@ class _QuizState extends State<Quiz> {
           body: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(colors: [
-                Color.fromARGB(255, 46, 6, 116),
-                Color.fromARGB(255, 124, 35, 151)
+                Color.fromARGB(255, 78, 13, 151),
+                Color.fromARGB(255, 107, 15, 168)
               ], begin: Alignment.topLeft, end: Alignment.bottomRight),
             ),
             child: screenWidget,
